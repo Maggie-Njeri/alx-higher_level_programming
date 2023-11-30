@@ -27,7 +27,7 @@ def mul(a, b):
 
 
 def div(a, b):
-    x = a \ b
+    x = int(a / b)
 
     a = 10
     b = 5
