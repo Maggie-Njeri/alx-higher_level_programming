@@ -1,23 +1,17 @@
-#include </bin/usr/include/python3.4/pyconfig-64.h>
 #include <Python.h>
-#include <object.h>
-#include <listobject.h>
 
-/**
- *
- * print_python_list_info -  function that prints some basic
- *                      info about Python lists
- * @p: python list
- */
+void print_python_list_info(PyObject *p) {
+    Py_ssize_t size, alloc, i;
+    PyObject *obj;
 
-void print_python_list_info(PyObject *p)
-{
-	long int size = PyList_Size(p);
-	int elem;
-	PyListObject *obj = (PyListObject *)p;
+    size = PyList_Size(p);
+    alloc = ((PyListObject *)p)->allocated;
 
-	printf("[*] Size of the Python List = %li\n", size);
-	printf("[*] Allocated = %li\n", obj->allocated);
-	for (elem = 0; elem < size; elem++)
-		printf("Element %d: %s\n", elem, Py_TYPE(PyList_GetItem(p, elem))->tp_name);
+    printf("[*] Size of the Python List = %ld\n", size);
+    printf("[*] Allocated = %ld\n", alloc);
+
+    for (i = 0; i < size; i++) {
+        obj = PyList_GetItem(p, i);
+        printf("Element %ld: %s\n", i, Py_TYPE(obj)->tp_name);
+    }
 }
