@@ -1,0 +1,1 @@
+how to GET, POST, CREATE, DELETE using HTTP in URL
